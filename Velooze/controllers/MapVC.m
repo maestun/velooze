@@ -179,9 +179,9 @@ static volatile BOOL sSyncing = NO;
 
             pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
                                                                              reuseIdentifier:defaultPinID];
-
+        
             pinView.canShowCallout = YES;
-            
+        }
             UIImage * img = [ACUtils tintedImageWithColor:[[ann station] color] image:[UIImage imageNamed:@"pin.png"]];
             UIImageView * iv = [[UIImageView alloc] initWithImage: [ACUtils imageWithImage:img scaledToSize:CGSizeMake(48, 48)]];
 
@@ -201,7 +201,7 @@ static volatile BOOL sSyncing = NO;
             pinView.canShowCallout = YES;
             pinView.draggable = YES;
             
-        }
+    
 
     return pinView;
 }
