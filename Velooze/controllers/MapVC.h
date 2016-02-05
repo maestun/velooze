@@ -14,8 +14,11 @@
 #import <RESideMenu/RESideMenu.h>
 
 
-@interface StationAnnotation : MKAnnotationView
+@interface StationAnnotation : MKPointAnnotation
+@property (weak, nonatomic) Station *station;
+@end
 
+@interface StationAnnotationView : MKAnnotationView
 @end
 
 

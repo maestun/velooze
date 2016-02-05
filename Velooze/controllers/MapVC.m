@@ -10,8 +10,8 @@
 
 
 #define TIMER_INTERVAL_SEC      (5.0 * 60)
-#define MAX_ANNOTATIONS         10
-#define DEFAULT_ZOOM_OUT        5
+#define MAX_ANNOTATIONS         100
+#define DEFAULT_ZOOM_OUT        10000
 #define DEFAULT_CAMERA_TARGET   CLLocationCoordinate2DMake(43.605340, 1.444727) // Capitole
 
 static volatile BOOL sSyncing = NO;
@@ -21,12 +21,22 @@ static volatile BOOL sSyncing = NO;
 
 - (instancetype)initWithStation:(Station *)aStation {
     self = [super init];
-    
+    [self setStation:aStation];
+    [self setCoordinate:[aStation coord]];
+    [self setTitle:[aStation name]];
+    [self setSubtitle:[aStation subtitle]];
+    return self;
+}
+
+@end
+
+@implementation StationAnnotationView
+- (instancetype)initWithFrame:(CGRect)frame; {
+    self = [super initWithFrame:frame];
     
     
     return self;
 }
-
 @end
 
 
@@ -58,8 +68,11 @@ static volatile BOOL sSyncing = NO;
     
     // change le titre de la barre
     [[self navigationItem] setTitle:@"Vélooze !"];
+    [[[self navigationController] navigationBar] setTintColor:FlatWhite]; // change la teinte du bouton "< Back"
+    [[[self navigationController] navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: FlatWhite, NSForegroundColorAttributeName, FONT_BOLD(FONT_SZ_MEDIUM), NSFontAttributeName,nil]];
+
     
-    MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:DEFAULT_CAMERA_TARGET fromDistance:1.0 pitch:0 heading:0];
+    MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:DEFAULT_CAMERA_TARGET fromDistance:DEFAULT_ZOOM_OUT pitch:0 heading:0];
     [[self mkMap] setCamera:cam animated:YES];
     [[self mkMap] setDelegate:self];
     [[self mkMap] setShowsUserLocation:YES];
@@ -139,7 +152,7 @@ static volatile BOOL sSyncing = NO;
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
     CLLocation * loc = locations[0];
-    MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:[loc coordinate] fromDistance:1.0 pitch:0 heading:0];
+    MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:[loc coordinate] fromDistance:DEFAULT_ZOOM_OUT pitch:0 heading:0];
     [[self mkMap] setCamera:cam animated:YES];
         // TODO: zoom level
     [mLocationManager stopUpdatingLocation];
@@ -149,8 +162,59 @@ static volatile BOOL sSyncing = NO;
 // ==========================================================================
 #pragma mark - MKMapViewDelegate
 // ==========================================================================
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [self refreshMarks];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    MKAnnotationView *pinView = nil;
+    
+        StationAnnotation * ann = (StationAnnotation *)annotation;
+        
+        static NSString * defaultPinID = @"velooze";
+        pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
+    
+    
+        if ( pinView == nil ) {
+
+            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                                             reuseIdentifier:defaultPinID];
+
+            pinView.canShowCallout = YES;
+            
+            UIImage * img = [ACUtils tintedImageWithColor:[[ann station] color] image:[UIImage imageNamed:@"pin.png"]];
+            UIImageView * iv = [[UIImageView alloc] initWithImage: [ACUtils imageWithImage:img scaledToSize:CGSizeMake(48, 48)]];
+
+            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
+            [label setText:[NSString stringWithFormat:@"%d", [[ann station] available]]];
+            [label setTextAlignment:NSTextAlignmentCenter];
+            [label setFont:FONT(FONT_SZ_MEDIUM)];
+            [label setTextColor:FlatWhite];
+            
+            [iv addSubview:label];
+            pinView.image = [ACUtils imageWithView:iv];
+            
+            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            [rightButton addTarget:self action:@selector(toggleFavorite:) forControlEvents:UIControlEventTouchUpInside];
+            [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+            pinView.rightCalloutAccessoryView = rightButton;
+            pinView.canShowCallout = YES;
+            pinView.draggable = YES;
+            
+        }
+
+    return pinView;
+}
 
 
+- (void)toggleFavorite:(id)aSender {
+    
+}
+
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    
+}
 
 // ==========================================================================
 #pragma mark - Data Sync
@@ -164,29 +228,16 @@ static volatile BOOL sSyncing = NO;
 
 
 - (void)onStationUpdated:(Station *)aStation withError:(NSError *)aError {
-    
 }
 
 
 - (void)refreshMarks {
-    
     [[self mkMap] removeAnnotations:[[self mkMap] annotations]];
-    
-//    // dirty patch !!
-//    if(StationLoader.instance().getStations().count == 0) {
-//        self .refreshData();
-//        return;
-//    }
-
     int index = 0;
     for(Station * station in [[StationManager instance] stations]) {
         if(MKMapRectContainsPoint([[self mkMap] visibleMapRect], MKMapPointForCoordinate([station coord]))) {
             if(index++ < MAX_ANNOTATIONS) {
-                MKPointAnnotation * pa = [[MKPointAnnotation alloc] init];
-                [pa setCoordinate:[station coord]];
-                [pa setTitle:[station name]];
-                [pa setSubtitle:[station subtitle]];
-                
+                StationAnnotation * pa = [[StationAnnotation alloc] initWithStation:station];
                 [[self mkMap] addAnnotation:pa];
             }
             else {
@@ -194,58 +245,17 @@ static volatile BOOL sSyncing = NO;
             }
         }
     }
-//    
-//    for station in StationLoader.instance().getStations() { //(var index = 0; index < MAX_RESULTS;) {
-//        let bounds:GMSCoordinateBounds = GMSCoordinateBounds(region: self.mkMapView.projection.visibleRegion());
-//        if(bounds.containsCoordinate(station.coords)) {
-//            if(index++ > MAX_RESULTS) {
-//                // dirty
-//                return;
-//            }
-//            
-//            var color:UIColor = station.avail_bikes > 0 ? (station.avail_bikes > 4 ? Config.StationColorNormal() : Config.StationColorWeak()) : Config.StationColorEmpty()
-//            
-//            
-//            if(station.avail_bikes == station.total_bikes) {
-//                color = Config.StationColorFull()
-//            }
-//            
-//            // build pin icon from custom UIView
-//            let mrk:BikeMarkerView = NSBundle.mainBundle().loadNibNamed("BikeViews", owner: self, options: nil)[1] as! BikeMarkerView
-//            
-//            
-//            if(FavoritesManager.instance().isFavorite( station.num_station) == true) {
-//                mrk.ivPin.image = Utils.tintedImageWithColor(color, fromImage: UIImage(named: "heart")!)
-//                mrk.ivContour.image = Utils.tintedImageWithColor(FlatRed(), fromImage: UIImage(named: "heart_contour")!)
-//                mrk.lbFreeBikes.frame = CGRectOffset(mrk.lbFreeBikes.frame, 0, 5);
-//            }
-//            else {
-//                mrk.ivPin.image = Utils.tintedImageWithColor(color, fromImage: UIImage(named: "pin")!)
-//                mrk.ivContour.image = UIImage(named: "pin_contour")!
-//            }
-//            
-//            if(station.status == "OPEN") {
-//                // TODO: optim chargement images
-//                mrk.lbFreeBikes.text = String(station.avail_bikes!)
-//            }
-//            else {
-//                // TODO: optim chargement images
-//                mrk.ivPin.image = Utils.tintedImageWithColor(Config.StationColorNOK(), fromImage: UIImage(named: "pin")!)
-//                mrk.lbFreeBikes.text = "HS"
-//            }
-//            
-//            let marker = BikeMarker(station: station);
-//            marker.map = self.mkMapView
-//            marker.color = color
-//            marker.icon = Utils.imageFromView(mrk)
-//        }
-//    }
-
 }
 
 
 - (void)showStation:(int)aIdent {
-    
+    for(Station * station in [[StationManager instance] stations]) {
+        if([station ident] == aIdent) {
+            MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:[station coord] fromDistance:DEFAULT_ZOOM_OUT pitch:0 heading:0];
+            [[self mkMap] setCamera:cam animated:YES];
+            break;
+        }
+    }
 }
 
 @end

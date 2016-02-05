@@ -64,7 +64,7 @@ static StationManager * sInstance =     nil;
 }
 
 
-- (void)updateStation:(int)aIdent withDelegate:(id<StationManagerDelegate>)aDelegate {
+- (void)updateStations:(int)aIdent withDelegate:(id<StationManagerDelegate>)aDelegate {
     
     NSString * url =  [NSString stringWithFormat:@"%@%@%@", BASE_URL, STATION_URL, JCD_API_KEY];
     url = [url stringByReplacingOccurrencesOfString:@"__CONTRACT__" withString:CONTRACT];
