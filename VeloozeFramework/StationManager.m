@@ -88,7 +88,7 @@ static StationManager * sInstance =     nil;
         NSString * status = aJSON[@"status"];
         int number = [aJSON[@"number"] intValue];
         int total = [aJSON[@"bike_stands"] intValue];
-        int available = [aJSON[@"available_bike"] intValue];
+        int available = [aJSON[@"available_bikes"] intValue];
         double lon = [pos[@"lng"] doubleValue];
         double lat = [pos[@"lat"] doubleValue];
         
