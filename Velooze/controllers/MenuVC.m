@@ -18,6 +18,8 @@
     [[self tvFavorites] setDelegate:self];
     [[self tvFavorites] setBackgroundColor:[UIColor clearColor]];
 
+    NSString * clazz = NSStringFromClass([MGSwipeTableCell class]);
+    [[self tvFavorites] registerClass:[MGSwipeTableCell class] forCellReuseIdentifier:clazz];
 }
 
 - (void)didReceiveMemoryWarning {

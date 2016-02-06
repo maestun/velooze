@@ -185,7 +185,7 @@ static volatile BOOL sSyncing = NO;
             UIImage * img = [ACUtils tintedImageWithColor:[[ann station] color] image:[UIImage imageNamed:@"pin.png"]];
             UIImageView * iv = [[UIImageView alloc] initWithImage: [ACUtils imageWithImage:img scaledToSize:CGSizeMake(48, 48)]];
 
-            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 48)];
+            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 36)];
             [label setText:[NSString stringWithFormat:@"%d", [[ann station] available]]];
             [label setTextAlignment:NSTextAlignmentCenter];
             [label setFont:FONT(FONT_SZ_MEDIUM)];
@@ -194,7 +194,17 @@ static volatile BOOL sSyncing = NO;
             [iv addSubview:label];
             pinView.image = [ACUtils imageWithView:iv];
             
-            UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            UIButton* rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+    
+    
+    // TODO: OP TI MI SER !!!
+    BOOL isfav = [[FavoritesManager instance] isFavorite:[[ann station] ident]];
+    
+    
+    UIImage * butt = [UIImage imageNamed:isfav ? @"like_filled" : @"like"];
+    
+            [rightButton setImage: [ACUtils tintedImageWithColor:FlatRed image:butt] forState:UIControlStateNormal];
+    [rightButton setTag:[[ann station] ident]];
             [rightButton addTarget:self action:@selector(toggleFavorite:) forControlEvents:UIControlEventTouchUpInside];
             [rightButton setTitle:annotation.title forState:UIControlStateNormal];
             pinView.rightCalloutAccessoryView = rightButton;
@@ -208,7 +218,13 @@ static volatile BOOL sSyncing = NO;
 
 
 - (void)toggleFavorite:(id)aSender {
-    
+
+    UIButton * bt = (UIButton *)aSender;
+    [[FavoritesManager instance] toggleFavorite:(int)[bt tag]];
+    BOOL isfav = [[FavoritesManager instance] isFavorite:(int)[bt tag]];
+
+    UIImage * butt = [UIImage imageNamed:isfav ? @"like_filled" : @"like"];
+    [bt setImage: [ACUtils tintedImageWithColor:FlatRed image:butt] forState:UIControlStateNormal];
 }
 
 
