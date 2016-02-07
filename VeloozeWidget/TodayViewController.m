@@ -8,39 +8,6 @@
 
 #import "TodayViewController.h"
 
-@implementation TodayTableCell
-
-
-
-- (void)setStation:(Station *)aStation {
-        
-    self.lbName.font = FONT(FONT_SZ_MEDIUM);
-    self.lbBikes.font = FONT(FONT_SZ_SMALL);
-    
-    // name
-    self.lbName.text = aStation.name;
-    self.lbName.textColor = [UIColor lightTextColor];
-    self.lbBikes.textColor = FlatWhite;
-    
-    // bikes
-    self.lbBikes.text = aStation.subtitle;
-    self.lbBikes.backgroundColor = aStation.color;
-    self.lbBikes.layer.borderColor = FlatWhite.CGColor;
-    self.lbBikes.layer.borderWidth = 1;
-    self.lbBikes.layer.masksToBounds = true;
-    self.lbBikes.layer.cornerRadius = 5;
-    
-    // badge
-    CGFloat h = CGRectGetHeight(self.uvBadge.frame);
-    self.uvBadge.layer.cornerRadius = h / 2;
-    self.uvBadge.layer.borderColor = FlatWhite.CGColor;
-    self.uvBadge.layer.borderWidth = 1;
-    self.uvBadge.backgroundColor = aStation.color;
-
-}
-
-@end
-
 @implementation TodayViewController
 
 - (void)viewDidLoad {
@@ -49,10 +16,30 @@
 
     [[self tvFavorites] setDelegate:self];
     [[self tvFavorites] setDataSource:self];
-    [[self tvFavorites] sizeToFit];
+//    [[self tvFavorites] sizeToFit];
+    [[self tvFavorites] setBackgroundColor:[UIColor clearColor]];
+
+    UILabel * bg = [[UILabel alloc] initWithFrame:[[self view] frame]];
+    [bg setTextColor:FlatWhite];
+    [bg setFont:FONT( FONT_SZ_MEDIUM )];
+    [bg setTextAlignment:(NSTextAlignmentCenter)];
+    [bg setText:@"Aucune station en favoris."];
     
-    NSTimer * t = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(refresh) userInfo:nil repeats:YES];
+    NSTimer * t = [NSTimer scheduledTimerWithTimeInterval:60 target:self selector:@selector(refresh:) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:t forMode:NSRunLoopCommonModes];
+
+//    [[self btRefresh] setBackgroundColor:APP_COLOR];
+//    [[[self btRefresh] titleLabel] setTextAlignment:(NSTextAlignmentCenter)];
+//    [[[self btRefresh] titleLabel] setTextColor:FlatWhite];
+//    [[[self btRefresh] titleLabel] setFont:FONT(FONT_SZ_SMALL)];
+//    [[[self btRefresh] titleLabel] setText:@"Vérifier"];
+//    
+//    [[self lbRefresh] setTextColor:FlatWhite];
+//    [[self lbRefresh] setFont:FONT(FONT_SZ_SMALL)];
+    
+    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.appstud.VeloozeFramework"];
+    [[self tvFavorites] registerNib:[UINib nibWithNibName:@"FavoritesTableCell" bundle:framework_bundle] forCellReuseIdentifier:@"idFavoritesTableCell"];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,29 +53,34 @@
     // If an error is encountered, use NCUpdateResultFailed
     // If there's no update required, use NCUpdateResultNoData
     // If there's an update, use NCUpdateResultNewData
-    [self refresh];
+    [self refresh:nil];
     completionHandler(NCUpdateResultNewData);
 }
 
 - (UIEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(UIEdgeInsets)defaultMarginInsets {
     defaultMarginInsets.bottom = 8;
-    return defaultMarginInsets;
+    return UIEdgeInsetsZero;
 }
 
-- (void)refresh {
-    [[StationManager instance] loadStations:self];
-}
+
+//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+//
+//    size.height = CGRectGetHeight([[self btRefresh] frame]) + CGRectGetHeight([[self tvFavorites] frame]);
+//    
+//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+//
+//    self ani
+//}
 
 - (void)onStationsLoadedWithError:(NSError *)aError {
     [[self tvFavorites] reloadData];
     self.preferredContentSize = self.tvFavorites.contentSize;
     self.view.translatesAutoresizingMaskIntoConstraints = false;
-
 }
+
 - (void)onStationUpdated:(Station *)aStation withError:(NSError *)aError {
     
 }
-
 
 
 // ============================================================================
@@ -100,38 +92,53 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger ret = [[[FavoritesManager instance] favorites] count];
-    NSLog(@"numberOfRowsInSection \(ret)");
+    NSLog(@"numberOfRowsInSection %ld", ret);
+    [[tableView backgroundView] setHidden:(ret != 0)];
     return ret;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    
-    TodayTableCell * cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TodayTableCell class]) forIndexPath:indexPath];
     NSArray * favs = [[FavoritesManager instance] favorites];
-    
-//    let cell:TodayTableCell = tableView.dequeueReusableCellWithIdentifier("idTodayCell", forIndexPath: indexPath) as! TodayTableCell;
-//    let favs = FavoritesManager.instance().getFavorites();
-    int ident = [[favs objectAtIndex:[indexPath row]] intValue];
-    
-    // get availability
-    for (Station * station in [[StationManager instance] stations])  {
-        if(station.ident == ident) {
-            [cell setStation:station];
-            break;
-        }
-    }
-    
+    int favid = [[favs objectAtIndex:[indexPath row]] intValue];
+    Station * st = [[StationManager instance] getStation:favid];
+    FavoritesTableCell * cell = [tableView dequeueReusableCellWithIdentifier:@"idFavoritesTableCell" forIndexPath:indexPath];
+    [cell setStation:st withDelegate:self];//forTableView:tableView];
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 22;
+    return 32;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated: true];
+    
+    NSArray * favs = [[FavoritesManager instance] favorites];
+    int favid = [[favs objectAtIndex:[indexPath row]] intValue];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"velooze://ident=%d", favid]];
+    [[self extensionContext] openURL:url completionHandler:nil];
+
 }
 
 
+// ============================================================================
+#pragma mark - FavoritesTableCellDelegate
+// ============================================================================
+- (void)onBikesClicked:(UIButton *)aSender {
+    [self refreshStation:(int)[aSender tag]];
+}
+
+- (void)onDeleteClicked:(int)aIdent {
+    
+}
+
+
+- (void)refreshStation:(int)aIdent {
+    [[StationManager instance] updateStations:aIdent withDelegate:self];
+}
+
+
+- (void)refresh:(id)sender {
+    [[StationManager instance] loadStations:self];
+}
 @end

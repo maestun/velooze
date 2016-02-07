@@ -11,12 +11,16 @@
 #import "VeloozeFramework.h"
 
 
-@interface TodayTableCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UILabel * lbBikes;
-@property (weak, nonatomic) IBOutlet UILabel * lbName;
-@property (weak, nonatomic) IBOutlet UIView * uvBadge;
-@end
+//@interface TodayTableCell : UITableViewCell
+//@property (weak, nonatomic) IBOutlet UILabel * lbBikes;
+//@property (weak, nonatomic) IBOutlet UILabel * lbName;
+//@property (weak, nonatomic) IBOutlet UIView * uvBadge;
+//@end
 
-@interface TodayViewController : UIViewController <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate, StationManagerDelegate>
+@interface TodayViewController : UIViewController <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate, StationManagerDelegate, FavoritesTableCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tvFavorites;
+//@property (weak, nonatomic) IBOutlet UIButton *btRefresh;
+//@property (weak, nonatomic) IBOutlet UILabel *lbRefresh;
+//- (IBAction)onRefreshClicked:(id)sender;
+
 @end

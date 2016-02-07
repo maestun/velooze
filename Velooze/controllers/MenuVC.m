@@ -18,6 +18,13 @@
     [[self tvFavorites] setDelegate:self];
     [[self tvFavorites] setBackgroundColor:[UIColor clearColor]];
     
+    UILabel * bg = [[UILabel alloc] initWithFrame:[[self view] frame]];
+    [bg setTextColor:FlatWhite];
+    [bg setFont:FONT( FONT_SZ_MEDIUM )];
+    [bg setTextAlignment:(NSTextAlignmentCenter)];
+    [bg setText:@"Aucune station en favoris."];
+    
+    [[self tvFavorites] setBackgroundView:bg];
 
     NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.appstud.VeloozeFramework"];
     [[self tvFavorites] registerNib:[UINib nibWithNibName:@"FavoritesTableCell" bundle:framework_bundle] forCellReuseIdentifier:CELL_ID(FavoritesTableCell)];
@@ -30,14 +37,30 @@
 
 
 // ============================================================================
-// MARK: - UITableView
+#pragma mark - FavoritesTableCellDelegate
+// ============================================================================
+- (void)onBikesClicked:(UIButton *)aSender {
+
+}
+
+- (void)onDeleteClicked:(int)aIdent {
+    [[FavoritesManager instance] toggleFavorite:aIdent];
+    [[self tvFavorites] reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+
+
+// ============================================================================
+#pragma mark - UITableView
 // ============================================================================
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [[[FavoritesManager instance] favorites] count];
+    NSInteger ret = [[[FavoritesManager instance] favorites] count];
+    [[tableView backgroundView] setHidden:(ret != 0)];
+    return ret;
 }
 
 
@@ -46,7 +69,7 @@
     int favid = [[favs objectAtIndex:[indexPath row]] intValue];
     Station * st = [[StationManager instance] getStation:favid];
     FavoritesTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID(FavoritesTableCell) forIndexPath:indexPath];
-    [cell setStation:st forTableView:tableView];
+    [cell setStation:st withDelegate:self];
     return cell;
 }
 

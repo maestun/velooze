@@ -16,7 +16,6 @@ static StationManager * sInstance =     nil;
 #define STATION_URL                     @"vls/v1/stations/__STATION__?contract=__CONTRACT__&apiKey="
 #define JCD_API_KEY                     @"d8cfd0ae8eb4101c6bd46b95031811d1451ca147"
 
-
 @implementation Station
 @end
 
@@ -57,6 +56,9 @@ static StationManager * sInstance =     nil;
             [temp addObject: [self buildStation:dic]];
         }
         [self setStations:[NSArray arrayWithArray:temp]];
+        
+        
+        
         [aDelegate onStationsLoadedWithError:nil];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [aDelegate onStationsLoadedWithError:error];
@@ -95,6 +97,7 @@ static StationManager * sInstance =     nil;
         
         UIColor * color = COLOR_STATION_NORMAL;
         NSString * subtitle = [NSString stringWithFormat:@"Vélos disponibles: %d / %d", available, total];
+        NSString * bikes = [NSString stringWithFormat:@"%d / %d", available, total];
         if([status isEqualToString:@"OPEN"] == NO) {
             color = COLOR_STATION_NOK;
             subtitle = @"Fermée";
@@ -114,6 +117,7 @@ static StationManager * sInstance =     nil;
         [ret setName:name];
         [ret setSubtitle:subtitle];
         [ret setAddress:address];
+        [ret setBikes:bikes];
         [ret setStatus:status];
         [ret setCoord:CLLocationCoordinate2DMake(lat, lon)];
         [ret setIdent:number];

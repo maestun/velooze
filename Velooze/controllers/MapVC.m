@@ -11,7 +11,7 @@
 
 #define TIMER_INTERVAL_SEC      (5.0 * 60)
 //#define MAX_ANNOTATIONS         50
-#define DEFAULT_ZOOM_OUT        5000
+#define DEFAULT_ZOOM_OUT        2000
 #define DEFAULT_CAMERA_TARGET   CLLocationCoordinate2DMake(43.605340, 1.444727) // Capitole
 
 
@@ -63,7 +63,7 @@ static volatile BOOL sSyncing = NO;
     [[[self navigationController] navigationBar] setTintColor:FlatWhite]; // change la teinte du bouton "< Back"
     [[[self navigationController] navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: FlatWhite, NSForegroundColorAttributeName, FONT_BOLD(FONT_SZ_LARGE), NSFontAttributeName,nil]];
 
-    
+    mLocationManager = [[CLLocationManager alloc] init];
     [mLocationManager setDelegate:self];
     [mLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
     [mLocationManager requestWhenInUseAuthorization];
@@ -103,7 +103,8 @@ static volatile BOOL sSyncing = NO;
 
 
 - (void)onMenuClicked:(id)sender {
-    [[self sideMenuViewController] presentLeftMenuViewController];
+    [[self sideMenuViewController] setContentViewInPortraitOffsetCenterX:(CGRectGetWidth([[self view] frame]) / 2) - 60];
+    [super presentLeftMenuViewController:sender];
 }
 
 - (IBAction)onLocateClicked:(id)sender {
@@ -134,7 +135,7 @@ static volatile BOOL sSyncing = NO;
 // ==========================================================================
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     // TODO:
-    NSLog(@"Error %@", error);
+    NSLog(@"Error %@", [error localizedDescription]);
 }
 
 
@@ -167,26 +168,16 @@ static volatile BOOL sSyncing = NO;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
     StationAnnotationView * pin = nil;
-    StationAnnotation * ann = (StationAnnotation *)annotation;
-        
-    static NSString * clazz = @"StationAnnotationView";
-    pin = (StationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:clazz];
-    if (pin == nil ) {
-        pin = [[[NSBundle mainBundle] loadNibNamed:clazz owner:self options:nil] firstObject];
-        [pin setCanShowCallout: YES];
+    if([annotation isKindOfClass:[StationAnnotation class]]) {
+        StationAnnotation * ann = (StationAnnotation *)annotation;
+        static NSString * clazz = @"StationAnnotationView";
+        pin = (StationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:clazz];
+        if (pin == nil ) {
+            pin = [[[NSBundle mainBundle] loadNibNamed:clazz owner:self options:nil] firstObject];
+            [pin setCanShowCallout: YES];
+        }
+        [pin setStation:[ann station]];
     }
-    [pin setStation:[ann station]];
-        
-//            [rightButton setImage:isfav ? sFavON : sFavOFF forState:UIControlStateNormal];
-//    [rightButton setTag:[[ann station] ident]];
-//            [rightButton addTarget:self action:@selector(toggleFavorite:) forControlEvents:UIControlEventTouchUpInside];
-//            [rightButton setTitle:annotation.title forState:UIControlStateNormal];
-//            pinView.rightCalloutAccessoryView = rightButton;
-//            pinView.canShowCallout = YES;
-//            pinView.draggable = YES;
-    
-    
-
     return pin;
 }
 
@@ -214,7 +205,7 @@ static volatile BOOL sSyncing = NO;
 
 - (void)refreshMarks {
     [[self mkMap] removeAnnotations:[[self mkMap] annotations]];
-    int index = 0;
+//    int index = 0;
     for(Station * station in [[StationManager instance] stations]) {
         if(MKMapRectContainsPoint([[self mkMap] visibleMapRect], MKMapPointForCoordinate([station coord]))) {
             if(YES) {//index++ < MAX_ANNOTATIONS) {

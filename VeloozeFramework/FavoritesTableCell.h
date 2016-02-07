@@ -11,13 +11,14 @@
 #import "VeloozeFramework.h"
 
 @protocol FavoritesTableCellDelegate <NSObject>
-
-
+- (void)onBikesClicked:(UIButton *)aSender;
+- (void)onDeleteClicked:(int)aIdent;
 @end
 
 @interface FavoritesTableCell : MGSwipeTableCell
 @property (weak, nonatomic) IBOutlet UIView *uvBadge;
 @property (weak, nonatomic) IBOutlet UILabel *lbName;
-@property (weak, nonatomic) IBOutlet UILabel *lbBikes;
-- (void)setStation:(Station *)aStation forTableView:(UITableView *)aTableView;
+@property (weak, nonatomic) IBOutlet UIButton *btBikes;
+//- (void)setStation:(Station *)aStation forTableView:(UITableView *)aTableView;
+- (void)setStation:(Station *)aStation withDelegate:(id<FavoritesTableCellDelegate>)aDelegate;
 @end

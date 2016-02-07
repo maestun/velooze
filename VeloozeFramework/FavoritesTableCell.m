@@ -17,36 +17,41 @@
     [[self lbName] setFont:FONT_BOLD(FONT_SZ_MEDIUM)];
     [[self lbName] setTextColor:FlatWhite];
 
-    [[self lbBikes] setTextAlignment:NSTextAlignmentCenter];
-    [[self lbBikes] setFont:FONT(FONT_SZ_SMALL)];
-    [[self lbBikes] setTextColor:FlatWhite];
-    [[[self lbBikes] layer] setBorderColor:FlatWhite.CGColor];
-    [[[self lbBikes] layer] setBorderWidth:1];
-    [[[self lbBikes] layer] setCornerRadius:5];
+    [[[self btBikes] titleLabel] setTextAlignment:NSTextAlignmentCenter];
+    [[[self btBikes] titleLabel] setFont:FONT(FONT_SZ_SMALL)];
+    [[[self btBikes] titleLabel] setTextColor:FlatWhite];
+//    [[[self lbBikes] layer] setBorderColor:FlatWhite.CGColor];
+//    [[[self lbBikes] layer] setBorderWidth:1];
+    [[[self btBikes] layer] setCornerRadius:5];
+    [[[self btBikes] layer] setMasksToBounds:YES];
     
-    [[[self uvBadge] layer] setBorderColor:FlatWhite.CGColor];
-    [[[self uvBadge] layer] setBorderWidth:1];
+//    [[[self uvBadge] layer] setBorderColor:FlatWhite.CGColor];
+//    [[[self uvBadge] layer] setBorderWidth:1];
     [[[self uvBadge] layer] setCornerRadius:CGRectGetHeight([[self uvBadge] frame]) / 2];
 }
 
 
-- (void)setStation:(Station *)aStation forTableView:(UITableView *)aTableView {
+- (void)setStation:(Station *)aStation withDelegate:(id<FavoritesTableCellDelegate>)aDelegate {//forTableView:(UITableView *)aTableView {
     
     [self setTag:[aStation ident]];
     
     [[self uvBadge] setBackgroundColor:[aStation color]];
     
-    [[self lbBikes] setBackgroundColor:[aStation color]];
-    [[self lbBikes] setText:[aStation subtitle]];
+    [[self btBikes] setTag:[aStation ident]];
+    [[self btBikes] setBackgroundColor:[aStation color]];
+    [[self btBikes] setTitle:[aStation bikes] forState:UIControlStateNormal];
+    [[self btBikes] addTarget:aDelegate action:@selector(onBikesClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [[self lbName] setText:[aStation name]];
     
     MGSwipeButton * bt = [MGSwipeButton buttonWithTitle:@"Supprimer" backgroundColor:FlatRed callback:^BOOL(MGSwipeTableCell *sender) {
-        [[FavoritesManager instance] toggleFavorite:[aStation ident]];
-        [aTableView reloadData];
+        [aDelegate onDeleteClicked:[aStation ident]];
         return YES;
     }];
-    [self setRightButtons:@[bt]];
+    
+    [[bt titleLabel] setFont:FONT(FONT_SZ_MEDIUM)];
+    [[bt titleLabel] setTextColor:FlatWhite];
+    [self setLeftButtons:@[bt]];
 }
 
 

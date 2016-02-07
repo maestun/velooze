@@ -12,7 +12,7 @@
 #import "VeloozeFramework.h"
 #import "MapVC.h"
 
-@interface MenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MenuVC : UIViewController <UITableViewDataSource, UITableViewDelegate, FavoritesTableCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tvFavorites;
 

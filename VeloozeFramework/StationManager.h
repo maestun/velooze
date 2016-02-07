@@ -23,6 +23,7 @@
 @property (retain, nonatomic) NSString *    subtitle;
 @property (retain, nonatomic) NSString *    address;
 @property (retain, nonatomic) NSString *    status;
+@property (retain, nonatomic) NSString *    bikes;
 @property (retain, nonatomic) UIColor *     color;
 @property int                               ident;
 @property int                               available;
@@ -49,4 +50,5 @@
 + (StationManager *)instance;
 - (Station *)getStation:(int)aIdent;
 - (void)loadStations:(id<StationManagerDelegate>)aDelegate;
+- (void)updateStations:(int)aIdent withDelegate:(id<StationManagerDelegate>)aDelegate;
 @end

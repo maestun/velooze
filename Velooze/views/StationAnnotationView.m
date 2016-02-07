@@ -19,8 +19,8 @@ static NSMutableDictionary * sTintedPins = nil;
 - (void)awakeFromNib {
     if(sPin == nil) {
         sPin = [UIImage imageNamed:@"pin_filled"];
-        sFavOFF = [ACUtils tintedImageWithColor:FlatRed image:[UIImage imageNamed:@"like"]];
-        sFavON = [ACUtils tintedImageWithColor:FlatRed image:[UIImage imageNamed:@"like_filled"]];
+        sFavOFF = [ACUtils tintedImageWithColor:FlatWhite image:[UIImage imageNamed:@"star"]];
+        sFavON = [ACUtils tintedImageWithColor:FlatYellow image:[UIImage imageNamed:@"star_filled"]];
         sTintedPins = [NSMutableDictionary dictionary];
     }
     

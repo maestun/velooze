@@ -16,7 +16,7 @@
 
 #import "FavoritesManager.h"
 
-#define FAVS_KEY    @"FAVS_KEY"
+#define FAVS_KEY    @"group.appstud.sharingdata"
 
 static FavoritesManager * sInstance = nil;
 
@@ -32,7 +32,9 @@ static FavoritesManager * sInstance = nil;
 
 - (instancetype)init {
     self = [super init];
-    NSArray * temp = [[NSUserDefaults standardUserDefaults] objectForKey:FAVS_KEY];
+    
+    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:FAVS_KEY];
+    NSArray * temp = [def objectForKey:FAVS_KEY];
     if(temp == nil) {
         temp = [NSArray array];
     }
@@ -53,8 +55,8 @@ static FavoritesManager * sInstance = nil;
     else {
         [mFavs addObject:[NSNumber numberWithInt:aIdent]];
     }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[self favorites] forKey:FAVS_KEY];
+    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:FAVS_KEY];
+    [def setObject:[self favorites] forKey:FAVS_KEY];
 }
 
 
