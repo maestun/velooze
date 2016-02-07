@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "StationManager.h"
 #import "FavoritesManager.h"
+#import "FavoritesTableCell.h"
 
 
 //! Project version number for VeloozeFramework.

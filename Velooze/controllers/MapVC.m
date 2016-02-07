@@ -10,31 +10,23 @@
 
 
 #define TIMER_INTERVAL_SEC      (5.0 * 60)
-#define MAX_ANNOTATIONS         100
-#define DEFAULT_ZOOM_OUT        10000
+//#define MAX_ANNOTATIONS         50
+#define DEFAULT_ZOOM_OUT        5000
 #define DEFAULT_CAMERA_TARGET   CLLocationCoordinate2DMake(43.605340, 1.444727) // Capitole
+
+
 
 static volatile BOOL sSyncing = NO;
 
-
 @implementation StationAnnotation
-
 - (instancetype)initWithStation:(Station *)aStation {
     self = [super init];
-    [self setStation:aStation];
-    [self setCoordinate:[aStation coord]];
-    [self setTitle:[aStation name]];
-    [self setSubtitle:[aStation subtitle]];
-    return self;
-}
-
-@end
-
-@implementation StationAnnotationView
-- (instancetype)initWithFrame:(CGRect)frame; {
-    self = [super initWithFrame:frame];
-    
-    
+    if(self) {
+        [self setStation:aStation];
+        [self setCoordinate:[aStation coord]];
+        [self setTitle:[aStation name]];
+        [self setSubtitle:[aStation subtitle]];
+    }
     return self;
 }
 @end
@@ -69,8 +61,15 @@ static volatile BOOL sSyncing = NO;
     // change le titre de la barre
     [[self navigationItem] setTitle:@"Vélooze !"];
     [[[self navigationController] navigationBar] setTintColor:FlatWhite]; // change la teinte du bouton "< Back"
-    [[[self navigationController] navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: FlatWhite, NSForegroundColorAttributeName, FONT_BOLD(FONT_SZ_MEDIUM), NSFontAttributeName,nil]];
+    [[[self navigationController] navigationBar] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: FlatWhite, NSForegroundColorAttributeName, FONT_BOLD(FONT_SZ_LARGE), NSFontAttributeName,nil]];
 
+    
+    [mLocationManager setDelegate:self];
+    [mLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [mLocationManager requestWhenInUseAuthorization];
+    [mLocationManager startUpdatingLocation];
+    [mLocationManager startUpdatingHeading];
+    
     
     MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:DEFAULT_CAMERA_TARGET fromDistance:DEFAULT_ZOOM_OUT pitch:0 heading:0];
     [[self mkMap] setCamera:cam animated:YES];
@@ -78,12 +77,6 @@ static volatile BOOL sSyncing = NO;
     [[self mkMap] setShowsUserLocation:YES];
     
     [[self btLocate] setImage:[ACUtils tintedImageWithColor:APP_COLOR image:[UIImage imageNamed:@"define_location"]] forState:UIControlStateNormal];
-    
-    [mLocationManager setDelegate:self];
-    [mLocationManager setDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [mLocationManager requestWhenInUseAuthorization];
-    [mLocationManager startUpdatingLocation];
-    [mLocationManager startUpdatingHeading];
 }
 
 
@@ -163,74 +156,46 @@ static volatile BOOL sSyncing = NO;
 #pragma mark - MKMapViewDelegate
 // ==========================================================================
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    [self refreshMarks];
+    //[self refreshMarks];
 }
+
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    
+}
+
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    MKAnnotationView *pinView = nil;
-    
-        StationAnnotation * ann = (StationAnnotation *)annotation;
+    StationAnnotationView * pin = nil;
+    StationAnnotation * ann = (StationAnnotation *)annotation;
         
-        static NSString * defaultPinID = @"velooze";
-        pinView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-    
-    
-        if ( pinView == nil ) {
-
-            pinView = [[MKAnnotationView alloc] initWithAnnotation:annotation
-                                                                             reuseIdentifier:defaultPinID];
+    static NSString * clazz = @"StationAnnotationView";
+    pin = (StationAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:clazz];
+    if (pin == nil ) {
+        pin = [[[NSBundle mainBundle] loadNibNamed:clazz owner:self options:nil] firstObject];
+        [pin setCanShowCallout: YES];
+    }
+    [pin setStation:[ann station]];
         
-            pinView.canShowCallout = YES;
-        }
-            UIImage * img = [ACUtils tintedImageWithColor:[[ann station] color] image:[UIImage imageNamed:@"pin.png"]];
-            UIImageView * iv = [[UIImageView alloc] initWithImage: [ACUtils imageWithImage:img scaledToSize:CGSizeMake(48, 48)]];
-
-            UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 48, 36)];
-            [label setText:[NSString stringWithFormat:@"%d", [[ann station] available]]];
-            [label setTextAlignment:NSTextAlignmentCenter];
-            [label setFont:FONT(FONT_SZ_MEDIUM)];
-            [label setTextColor:FlatWhite];
-            
-            [iv addSubview:label];
-            pinView.image = [ACUtils imageWithView:iv];
-            
-            UIButton* rightButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 24, 24)];
+//            [rightButton setImage:isfav ? sFavON : sFavOFF forState:UIControlStateNormal];
+//    [rightButton setTag:[[ann station] ident]];
+//            [rightButton addTarget:self action:@selector(toggleFavorite:) forControlEvents:UIControlEventTouchUpInside];
+//            [rightButton setTitle:annotation.title forState:UIControlStateNormal];
+//            pinView.rightCalloutAccessoryView = rightButton;
+//            pinView.canShowCallout = YES;
+//            pinView.draggable = YES;
     
     
-    // TODO: OP TI MI SER !!!
-    BOOL isfav = [[FavoritesManager instance] isFavorite:[[ann station] ident]];
-    
-    
-    UIImage * butt = [UIImage imageNamed:isfav ? @"like_filled" : @"like"];
-    
-            [rightButton setImage: [ACUtils tintedImageWithColor:FlatRed image:butt] forState:UIControlStateNormal];
-    [rightButton setTag:[[ann station] ident]];
-            [rightButton addTarget:self action:@selector(toggleFavorite:) forControlEvents:UIControlEventTouchUpInside];
-            [rightButton setTitle:annotation.title forState:UIControlStateNormal];
-            pinView.rightCalloutAccessoryView = rightButton;
-            pinView.canShowCallout = YES;
-            pinView.draggable = YES;
-            
-    
 
-    return pinView;
-}
-
-
-- (void)toggleFavorite:(id)aSender {
-
-    UIButton * bt = (UIButton *)aSender;
-    [[FavoritesManager instance] toggleFavorite:(int)[bt tag]];
-    BOOL isfav = [[FavoritesManager instance] isFavorite:(int)[bt tag]];
-
-    UIImage * butt = [UIImage imageNamed:isfav ? @"like_filled" : @"like"];
-    [bt setImage: [ACUtils tintedImageWithColor:FlatRed image:butt] forState:UIControlStateNormal];
+    return pin;
 }
 
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
     
 }
+
+
 
 // ==========================================================================
 #pragma mark - Data Sync
@@ -252,7 +217,7 @@ static volatile BOOL sSyncing = NO;
     int index = 0;
     for(Station * station in [[StationManager instance] stations]) {
         if(MKMapRectContainsPoint([[self mkMap] visibleMapRect], MKMapPointForCoordinate([station coord]))) {
-            if(index++ < MAX_ANNOTATIONS) {
+            if(YES) {//index++ < MAX_ANNOTATIONS) {
                 StationAnnotation * pa = [[StationAnnotation alloc] initWithStation:station];
                 [[self mkMap] addAnnotation:pa];
             }
@@ -269,6 +234,9 @@ static volatile BOOL sSyncing = NO;
         if([station ident] == aIdent) {
             MKMapCamera * cam = [MKMapCamera cameraLookingAtCenterCoordinate:[station coord] fromDistance:DEFAULT_ZOOM_OUT pitch:0 heading:0];
             [[self mkMap] setCamera:cam animated:YES];
+            
+            // TODO: afficher callout
+            
             break;
         }
     }

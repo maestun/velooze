@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		090EE46F1C6763610028C5DD /* FavoritesTableCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 090EE46C1C6763610028C5DD /* FavoritesTableCell.h */; };
+		090EE4701C6763610028C5DD /* FavoritesTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 090EE46D1C6763610028C5DD /* FavoritesTableCell.m */; };
+		090EE4711C6763610028C5DD /* FavoritesTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */; };
+		09D692611C673AFC00F8D5EC /* StationAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */; };
+		09D692651C673C0F00F8D5EC /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D692641C673C0F00F8D5EC /* StationAnnotationView.m */; };
 		8BB966C11C64EE6C0064EBCC /* VeloozeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB966C01C64EE6C0064EBCC /* VeloozeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BB966CC1C64EEF80064EBCC /* FavoritesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB966C81C64EEF80064EBCC /* FavoritesManager.h */; };
 		8BB966CD1C64EEF80064EBCC /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966C91C64EEF80064EBCC /* FavoritesManager.m */; };
@@ -76,6 +81,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		090EE46C1C6763610028C5DD /* FavoritesTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableCell.h; sourceTree = "<group>"; };
+		090EE46D1C6763610028C5DD /* FavoritesTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableCell.m; sourceTree = "<group>"; };
+		090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableCell.xib; sourceTree = "<group>"; };
+		09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationAnnotationView.xib; path = views/StationAnnotationView.xib; sourceTree = "<group>"; };
+		09D692631C673C0F00F8D5EC /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationAnnotationView.h; path = views/StationAnnotationView.h; sourceTree = "<group>"; };
+		09D692641C673C0F00F8D5EC /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationAnnotationView.m; path = views/StationAnnotationView.m; sourceTree = "<group>"; };
 		116F05C0D824F4E714C21249 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		15A0C7E5819E54BC4AFD766F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -144,6 +155,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09D692621C673B0200F8D5EC /* views */ = {
+			isa = PBXGroup;
+			children = (
+				09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */,
+				09D692631C673C0F00F8D5EC /* StationAnnotationView.h */,
+				09D692641C673C0F00F8D5EC /* StationAnnotationView.m */,
+			);
+			name = views;
+			sourceTree = "<group>";
+		};
 		67741DBF842279E056F76CA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +201,9 @@
 			children = (
 				8BB966C81C64EEF80064EBCC /* FavoritesManager.h */,
 				8BB966C91C64EEF80064EBCC /* FavoritesManager.m */,
+				090EE46C1C6763610028C5DD /* FavoritesTableCell.h */,
+				090EE46D1C6763610028C5DD /* FavoritesTableCell.m */,
+				090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */,
 				8BB966CA1C64EEF80064EBCC /* StationManager.h */,
 				8BB966CB1C64EEF80064EBCC /* StationManager.m */,
 				8BB966C01C64EE6C0064EBCC /* VeloozeFramework.h */,
@@ -192,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				8BB966F61C64F5110064EBCC /* controllers */,
+				09D692621C673B0200F8D5EC /* views */,
 				8BB966D91C64EF3F0064EBCC /* AppDelegate.h */,
 				8BB966DA1C64EF3F0064EBCC /* AppDelegate.m */,
 				8BB966FA1C64FCE70064EBCC /* ACUtils.h */,
@@ -258,6 +283,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB966CC1C64EEF80064EBCC /* FavoritesManager.h in Headers */,
+				090EE46F1C6763610028C5DD /* FavoritesTableCell.h in Headers */,
 				8BB966CE1C64EEF80064EBCC /* StationManager.h in Headers */,
 				8BB966C11C64EE6C0064EBCC /* VeloozeFramework.h in Headers */,
 			);
@@ -384,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				090EE4711C6763610028C5DD /* FavoritesTableCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +420,7 @@
 			files = (
 				8BB966E61C64EF3F0064EBCC /* LaunchScreen.storyboard in Resources */,
 				8BB966E31C64EF3F0064EBCC /* Assets.xcassets in Resources */,
+				09D692611C673AFC00F8D5EC /* StationAnnotationView.xib in Resources */,
 				8BB966E11C64EF3F0064EBCC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB966CF1C64EEF80064EBCC /* StationManager.m in Sources */,
+				090EE4701C6763610028C5DD /* FavoritesTableCell.m in Sources */,
 				8BB966CD1C64EEF80064EBCC /* FavoritesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +530,7 @@
 			files = (
 				8BB966EF1C64F4D30064EBCC /* RootVC.m in Sources */,
 				8BB966F91C64F5880064EBCC /* SplashVC.m in Sources */,
+				09D692651C673C0F00F8D5EC /* StationAnnotationView.m in Sources */,
 				8BB966F21C64F4FD0064EBCC /* MenuVC.m in Sources */,
 				8BB966DB1C64EF3F0064EBCC /* AppDelegate.m in Sources */,
 				8BB966D81C64EF3F0064EBCC /* main.m in Sources */,
@@ -795,6 +825,7 @@
 				8BB967141C650D4A0064EBCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

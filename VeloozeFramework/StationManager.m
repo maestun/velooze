@@ -86,6 +86,7 @@ static StationManager * sInstance =     nil;
     if (pos) {
         NSString * name = [aJSON[@"name"] componentsSeparatedByString:@" - "][1];
         NSString * status = aJSON[@"status"];
+        NSString * address = aJSON[@"addres"];
         int number = [aJSON[@"number"] intValue];
         int total = [aJSON[@"bike_stands"] intValue];
         int available = [aJSON[@"available_bikes"] intValue];
@@ -93,7 +94,7 @@ static StationManager * sInstance =     nil;
         double lat = [pos[@"lat"] doubleValue];
         
         UIColor * color = COLOR_STATION_NORMAL;
-        NSString * subtitle = [NSString stringWithFormat:@"%d / %d", available, total];
+        NSString * subtitle = [NSString stringWithFormat:@"Vélos disponibles: %d / %d", available, total];
         if([status isEqualToString:@"OPEN"] == NO) {
             color = COLOR_STATION_NOK;
             subtitle = @"Fermée";
@@ -111,6 +112,8 @@ static StationManager * sInstance =     nil;
         ret = [[Station alloc] init];
         [ret setColor:color];
         [ret setName:name];
+        [ret setSubtitle:subtitle];
+        [ret setAddress:address];
         [ret setStatus:status];
         [ret setCoord:CLLocationCoordinate2DMake(lat, lon)];
         [ret setIdent:number];

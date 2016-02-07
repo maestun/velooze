@@ -11,14 +11,12 @@
 #import <CoreLocation/CoreLocation.h>
 #import "VeloozeFramework.h"
 #import "ACUtils.h"
+#import "StationAnnotationView.h"
 #import <RESideMenu/RESideMenu.h>
 
 
 @interface StationAnnotation : MKPointAnnotation
 @property (weak, nonatomic) Station *station;
-@end
-
-@interface StationAnnotationView : MKAnnotationView
 @end
 
 

@@ -13,7 +13,7 @@
 
 #define COLOR_STATION_NOK       FlatBlack
 #define COLOR_STATION_EMPTY     FlatRed
-#define COLOR_STATION_WEAK      FlatYellowDark
+#define COLOR_STATION_WEAK      FlatOrange
 #define COLOR_STATION_NORMAL    FlatGreen
 #define COLOR_STATION_FULL      FlatBlue
 
@@ -21,6 +21,7 @@
 
 @property (retain, nonatomic) NSString *    name;
 @property (retain, nonatomic) NSString *    subtitle;
+@property (retain, nonatomic) NSString *    address;
 @property (retain, nonatomic) NSString *    status;
 @property (retain, nonatomic) UIColor *     color;
 @property int                               ident;

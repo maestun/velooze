@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <view contentMode="scaleToFill" id="qN9-mF-SlA" customClass="StationAnnotationView">
+            <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="VLj-bY-fnC">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like_filled" translatesAutoresizingMaskIntoConstraints="NO" id="biE-si-hP9">
+                    <rect key="frame" x="32" y="0.0" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="L2E-7X-ENv"/>
+                        <constraint firstAttribute="width" constant="16" id="Pf7-uU-tWV"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="meY-Ne-gKC">
+                    <rect key="frame" x="0.0" y="0.0" width="48" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="gcT-9X-rZU"/>
+                        <constraint firstAttribute="height" constant="36" id="uxC-fZ-jnt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="meY-Ne-gKC" firstAttribute="top" secondItem="qN9-mF-SlA" secondAttribute="top" id="7bR-4h-11t"/>
+                <constraint firstItem="meY-Ne-gKC" firstAttribute="centerX" secondItem="qN9-mF-SlA" secondAttribute="centerX" id="8t9-qO-n9O"/>
+                <constraint firstAttribute="trailing" secondItem="biE-si-hP9" secondAttribute="trailing" id="G2G-pr-hJQ"/>
+                <constraint firstItem="VLj-bY-fnC" firstAttribute="centerX" secondItem="qN9-mF-SlA" secondAttribute="centerX" id="LL4-qJ-lHQ"/>
+                <constraint firstItem="VLj-bY-fnC" firstAttribute="height" secondItem="qN9-mF-SlA" secondAttribute="height" id="Wzn-2z-C4v"/>
+                <constraint firstItem="VLj-bY-fnC" firstAttribute="width" secondItem="qN9-mF-SlA" secondAttribute="width" id="ann-xc-aUH"/>
+                <constraint firstItem="biE-si-hP9" firstAttribute="top" secondItem="qN9-mF-SlA" secondAttribute="top" id="sA5-LJ-J1E"/>
+                <constraint firstItem="VLj-bY-fnC" firstAttribute="centerY" secondItem="qN9-mF-SlA" secondAttribute="centerY" id="stX-BC-P4R"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="ivFav" destination="biE-si-hP9" id="9nz-Xd-XRH"/>
+                <outlet property="ivPin" destination="VLj-bY-fnC" id="QnE-Fm-OIr"/>
+                <outlet property="lbBikes" destination="meY-Ne-gKC" id="Wyb-40-OtA"/>
+            </connections>
+            <point key="canvasLocation" x="152" y="-191"/>
+        </view>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+    </objects>
+    <resources>
+        <image name="like_filled" width="100" height="100"/>
+        <image name="pin" width="100" height="100"/>
+    </resources>
+</document>

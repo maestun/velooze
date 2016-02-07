@@ -125,7 +125,7 @@
         <!--MenuVC-->
         <scene sceneID="W3I-lF-J9m">
             <objects>
-                <viewController storyboardIdentifier="idMenuVC" id="n4u-Y2-mRK" customClass="MenuVC" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="idMenuVC" extendedLayoutIncludesOpaqueBars="YES" id="n4u-Y2-mRK" customClass="MenuVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6vK-N2-zJD"/>
                         <viewControllerLayoutGuide type="bottom" id="WLN-Br-MOs"/>
@@ -136,10 +136,10 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CgP-ol-P9L">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.12637259066104889" green="0.12639245390892029" blue="0.12636536359786987" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="CgP-ol-P9L" firstAttribute="width" secondItem="h4M-Wc-wNr" secondAttribute="width" id="2TE-Tb-yJa"/>
                             <constraint firstItem="CgP-ol-P9L" firstAttribute="height" secondItem="h4M-Wc-wNr" secondAttribute="height" id="Qb2-Jq-KkZ"/>
@@ -147,6 +147,7 @@
                             <constraint firstItem="CgP-ol-P9L" firstAttribute="centerX" secondItem="h4M-Wc-wNr" secondAttribute="centerX" id="f2M-ln-Wuj"/>
                         </constraints>
                     </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tvFavorites" destination="CgP-ol-P9L" id="kb4-c1-p4r"/>
                     </connections>

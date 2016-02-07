@@ -17,9 +17,10 @@
     [[self tvFavorites] setDataSource:self];
     [[self tvFavorites] setDelegate:self];
     [[self tvFavorites] setBackgroundColor:[UIColor clearColor]];
+    
 
-    NSString * clazz = NSStringFromClass([MGSwipeTableCell class]);
-    [[self tvFavorites] registerClass:[MGSwipeTableCell class] forCellReuseIdentifier:clazz];
+    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.appstud.VeloozeFramework"];
+    [[self tvFavorites] registerNib:[UINib nibWithNibName:@"FavoritesTableCell" bundle:framework_bundle] forCellReuseIdentifier:CELL_ID(FavoritesTableCell)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,24 +44,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSArray * favs = [[FavoritesManager instance] favorites];
     int favid = [[favs objectAtIndex:[indexPath row]] intValue];
-    NSString * clazz = NSStringFromClass([MGSwipeTableCell class]);
-    MGSwipeTableCell * cell = [tableView dequeueReusableCellWithIdentifier:clazz forIndexPath:indexPath];
-    if(cell == nil) {
-        [[cell textLabel] setTextColor:FlatWhite];
-        [[cell textLabel] setTextAlignment:NSTextAlignmentCenter];
-        [[cell textLabel] setFont:FONT(FONT_SZ_MEDIUM)];
-        cell = [[MGSwipeTableCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:clazz];
-        [cell setBackgroundColor:[UIColor clearColor]];
-        MGSwipeButton * bt = [MGSwipeButton buttonWithTitle:@"Supprimer" backgroundColor:FlatRed callback:^BOOL(MGSwipeTableCell *sender) {
-            [[FavoritesManager instance] toggleFavorite:favid];
-            [[self tvFavorites] reloadData];
-            return YES;
-        }];
-        [cell setRightButtons:@[bt]];
-    }
-    
     Station * st = [[StationManager instance] getStation:favid];
-    [[cell textLabel] setText:[st name]];
+    FavoritesTableCell * cell = [tableView dequeueReusableCellWithIdentifier:CELL_ID(FavoritesTableCell) forIndexPath:indexPath];
+    [cell setStation:st forTableView:tableView];
     return cell;
 }
 
@@ -70,28 +56,11 @@
     NSArray * favs = [[FavoritesManager instance] favorites];
     int favid = [[favs objectAtIndex:[indexPath row]] intValue];
 
-    MapVC * vc = (MapVC *) [[self sideMenuViewController] contentViewController];
+    UINavigationController * nc = (UINavigationController *)[[self sideMenuViewController] contentViewController];
+    MapVC * vc = (MapVC *)[nc visibleViewController];
     [vc showStation:favid];
-    
     [[self sideMenuViewController] hideMenuViewController];
 }
-
-
-//func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    tableView .deselectRowAtIndexPath(indexPath, animated: true);
-//    
-//    let favs:NSDictionary =  FavoritesManager.instance().getFavorites();
-//    
-//    let nc:RootNC = self.sideMenuController() as! RootNC;
-//    //        nc.topViewController;
-//    
-//    let map:MapVC = nc.topViewController as! MapVC;//self.navigationController?.topViewController! as! MapVC;
-//    let key:String = favs.allKeys[indexPath.row] as! String;
-//    map.showStation(Int(key)!);
-//    map.hideSideMenuView();
-//}
-//
-
 
 
 /*

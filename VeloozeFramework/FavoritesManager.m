@@ -48,7 +48,7 @@ static FavoritesManager * sInstance = nil;
 
 - (void)toggleFavorite:(int)aIdent {
     if([self isFavorite:aIdent]) {
-        [mFavs removeObjectIdenticalTo:[NSNumber numberWithInt:aIdent]];
+        [mFavs removeObject:[NSNumber numberWithInt:aIdent]];
     }
     else {
         [mFavs addObject:[NSNumber numberWithInt:aIdent]];
