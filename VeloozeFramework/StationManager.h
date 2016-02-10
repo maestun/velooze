@@ -10,12 +10,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import <AFNetworking/AFNetworking.h>
 #import <ChameleonFramework/Chameleon.h>
-
-#define COLOR_STATION_NOK       FlatBlack
-#define COLOR_STATION_EMPTY     FlatRed
-#define COLOR_STATION_WEAK      FlatOrange
-#define COLOR_STATION_NORMAL    FlatGreen
-#define COLOR_STATION_FULL      FlatBlue
+#import "Config.h"
 
 @interface Station : NSObject
 

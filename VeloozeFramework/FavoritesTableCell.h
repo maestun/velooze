@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <MGSwipeTableCell/MGSwipeTableCell.h>
-#import "VeloozeFramework.h"
+#import "Config.h"
+#import "StationManager.h"
 
 @protocol FavoritesTableCellDelegate <NSObject>
 - (void)onBikesClicked:(UIButton *)aSender;

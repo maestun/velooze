@@ -16,6 +16,8 @@ static StationManager * sInstance =     nil;
 #define STATION_URL                     @"vls/v1/stations/__STATION__?contract=__CONTRACT__&apiKey="
 #define JCD_API_KEY                     @"d8cfd0ae8eb4101c6bd46b95031811d1451ca147"
 
+#define LAST_UPDATE_KEY                 @"velooze.lastupdate"
+
 @implementation Station
 @end
 
@@ -56,8 +58,6 @@ static StationManager * sInstance =     nil;
             [temp addObject: [self buildStation:dic]];
         }
         [self setStations:[NSArray arrayWithArray:temp]];
-        
-        
         
         [aDelegate onStationsLoadedWithError:nil];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

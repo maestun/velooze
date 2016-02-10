@@ -17,7 +17,9 @@
 //@property (weak, nonatomic) IBOutlet UIView * uvBadge;
 //@end
 
-@interface TodayViewController : UIViewController <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate, StationManagerDelegate, FavoritesTableCellDelegate>
+@interface TodayViewController : UIViewController <NCWidgetProviding, UITableViewDataSource, UITableViewDelegate, StationManagerDelegate, FavoritesTableCellDelegate> {
+    int64_t mLastUpdate;
+}
 @property (weak, nonatomic) IBOutlet UITableView *tvFavorites;
 //@property (weak, nonatomic) IBOutlet UIButton *btRefresh;
 //@property (weak, nonatomic) IBOutlet UILabel *lbRefresh;

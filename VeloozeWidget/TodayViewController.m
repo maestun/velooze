@@ -42,6 +42,12 @@
 
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self refresh:nil];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -63,23 +69,42 @@
 }
 
 
-//- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
-//
-//    size.height = CGRectGetHeight([[self btRefresh] frame]) + CGRectGetHeight([[self tvFavorites] frame]);
-//    
-//    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-//
-//    self ani
-//}
-
 - (void)onStationsLoadedWithError:(NSError *)aError {
+    mLastUpdate = [ACUtils getTick];
     [[self tvFavorites] reloadData];
-    self.preferredContentSize = self.tvFavorites.contentSize;
-    self.view.translatesAutoresizingMaskIntoConstraints = false;
+    [self setPreferredContentSize: [[self tvFavorites] contentSize]];
+    [[self view] setTranslatesAutoresizingMaskIntoConstraints:NO];
 }
+
 
 - (void)onStationUpdated:(Station *)aStation withError:(NSError *)aError {
     
+}
+
+
+- (NSString *)getLastUpdateString:(int64_t)aMilliseconds {
+    int seconds = (int)(aMilliseconds / 1000);
+    int minutes = (int)(seconds / 60);
+    int hours = (int)(minutes / 60);
+    
+    NSString * ret = @"Dernière mise à jour à l'instant.";
+    if(hours > 0 || minutes > 0 || seconds > 0) {
+        NSString * prefix = @"Dernière mise à jour il y a ";
+        NSString * h = (hours > 0)
+            ? ([NSString stringWithFormat:@"%d heure%@, ", (int)hours, (hours == 1) ? @"" : @"s"])
+            : @"";
+        
+        NSString * m = (minutes > 0)
+            ? [NSString stringWithFormat:@"%d minute%@, ", (int)minutes, (minutes == 1) ? @"" : @"s"]
+            : @"";
+        
+        NSString * s = (seconds > 0)
+            ? [NSString stringWithFormat:@"%d seconde%@.", (int)seconds, (seconds == 1) ? @"" : @"s"]
+            : @".";
+        
+        ret = [NSString stringWithFormat:@"%@%@%@%@", prefix, h, m, s];
+    }
+    return ret;
 }
 
 
@@ -89,6 +114,33 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([tableView frame]), [self tableView:tableView heightForHeaderInSection:section])];
+    [title setTextAlignment:NSTextAlignmentCenter];
+    [title setText:mLastUpdate == 0 ? @"" : [self getLastUpdateString:([ACUtils getTick] - mLastUpdate)]];
+    [title setTextColor:FlatWhite];
+    [title setFont:FONT(FONT_SZ_SMALL)];
+    
+    
+    UIButton * bt = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([tableView frame]) - 50, 0, 50, 20)];
+    [[bt titleLabel] setTextAlignment:NSTextAlignmentCenter];
+    [[bt  titleLabel] setFont:FONT(FONT_SZ_SMALL)];
+    [[bt titleLabel] setTextColor:FlatWhite];
+    [[bt titleLabel] setText:@"Refresh"];
+    [[bt layer] setCornerRadius:5];
+    [[bt layer] setMasksToBounds:YES];
+    [bt addTarget:self action:@selector(refresh:) forControlEvents:UIControlEventTouchUpInside];
+    [title addSubview:bt];
+    
+    return title;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 22;
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger ret = [[[FavoritesManager instance] favorites] count];

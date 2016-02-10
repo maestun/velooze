@@ -12,6 +12,8 @@
 		090EE4711C6763610028C5DD /* FavoritesTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */; };
 		09D692611C673AFC00F8D5EC /* StationAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */; };
 		09D692651C673C0F00F8D5EC /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D692641C673C0F00F8D5EC /* StationAnnotationView.m */; };
+		8B20EB791C6B2E3300BC2050 /* ACUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B20EB771C6B2E3300BC2050 /* ACUtils.h */; };
+		8B20EB7A1C6B2E3300BC2050 /* ACUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B20EB781C6B2E3300BC2050 /* ACUtils.m */; };
 		8BB966C11C64EE6C0064EBCC /* VeloozeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB966C01C64EE6C0064EBCC /* VeloozeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8BB966CC1C64EEF80064EBCC /* FavoritesManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB966C81C64EEF80064EBCC /* FavoritesManager.h */; };
 		8BB966CD1C64EEF80064EBCC /* FavoritesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966C91C64EEF80064EBCC /* FavoritesManager.m */; };
@@ -26,7 +28,6 @@
 		8BB966F21C64F4FD0064EBCC /* MenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966F11C64F4FD0064EBCC /* MenuVC.m */; };
 		8BB966F51C64F50A0064EBCC /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966F41C64F50A0064EBCC /* MapVC.m */; };
 		8BB966F91C64F5880064EBCC /* SplashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966F81C64F5880064EBCC /* SplashVC.m */; };
-		8BB966FC1C64FCE70064EBCC /* ACUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BB966FB1C64FCE70064EBCC /* ACUtils.m */; };
 		8BB966FE1C6509340064EBCC /* VeloozeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB966BD1C64EE6C0064EBCC /* VeloozeFramework.framework */; };
 		8BB966FF1C6509340064EBCC /* VeloozeFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB966BD1C64EE6C0064EBCC /* VeloozeFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8BB967071C650D4A0064EBCC /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB967061C650D4A0064EBCC /* NotificationCenter.framework */; };
@@ -90,6 +91,9 @@
 		116F05C0D824F4E714C21249 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		15A0C7E5819E54BC4AFD766F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		8B20EB761C6B2D6B00BC2050 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		8B20EB771C6B2E3300BC2050 /* ACUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUtils.h; sourceTree = "<group>"; };
+		8B20EB781C6B2E3300BC2050 /* ACUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUtils.m; sourceTree = "<group>"; };
 		8BB966BD1C64EE6C0064EBCC /* VeloozeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VeloozeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BB966C01C64EE6C0064EBCC /* VeloozeFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VeloozeFramework.h; sourceTree = "<group>"; };
 		8BB966C21C64EE6C0064EBCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -113,8 +117,6 @@
 		8BB966F41C64F50A0064EBCC /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapVC.m; path = controllers/MapVC.m; sourceTree = "<group>"; };
 		8BB966F71C64F5880064EBCC /* SplashVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashVC.h; path = controllers/SplashVC.h; sourceTree = "<group>"; };
 		8BB966F81C64F5880064EBCC /* SplashVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashVC.m; path = controllers/SplashVC.m; sourceTree = "<group>"; };
-		8BB966FA1C64FCE70064EBCC /* ACUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUtils.h; sourceTree = "<group>"; };
-		8BB966FB1C64FCE70064EBCC /* ACUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUtils.m; sourceTree = "<group>"; };
 		8BB967051C650D4A0064EBCC /* VeloozeWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VeloozeWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BB967061C650D4A0064EBCC /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		8BB967091C650D4A0064EBCC /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
@@ -199,6 +201,9 @@
 		8BB966BF1C64EE6C0064EBCC /* VeloozeFramework */ = {
 			isa = PBXGroup;
 			children = (
+				8B20EB771C6B2E3300BC2050 /* ACUtils.h */,
+				8B20EB781C6B2E3300BC2050 /* ACUtils.m */,
+				8B20EB761C6B2D6B00BC2050 /* Config.h */,
 				8BB966C81C64EEF80064EBCC /* FavoritesManager.h */,
 				8BB966C91C64EEF80064EBCC /* FavoritesManager.m */,
 				090EE46C1C6763610028C5DD /* FavoritesTableCell.h */,
@@ -219,8 +224,6 @@
 				09D692621C673B0200F8D5EC /* views */,
 				8BB966D91C64EF3F0064EBCC /* AppDelegate.h */,
 				8BB966DA1C64EF3F0064EBCC /* AppDelegate.m */,
-				8BB966FA1C64FCE70064EBCC /* ACUtils.h */,
-				8BB966FB1C64FCE70064EBCC /* ACUtils.m */,
 				8BB966DF1C64EF3F0064EBCC /* Main.storyboard */,
 				8BB966E41C64EF3F0064EBCC /* LaunchScreen.storyboard */,
 				8BB967181C6511330064EBCC /* Velooze.entitlements */,
@@ -285,6 +288,7 @@
 				8BB966CC1C64EEF80064EBCC /* FavoritesManager.h in Headers */,
 				090EE46F1C6763610028C5DD /* FavoritesTableCell.h in Headers */,
 				8BB966CE1C64EEF80064EBCC /* StationManager.h in Headers */,
+				8B20EB791C6B2E3300BC2050 /* ACUtils.h in Headers */,
 				8BB966C11C64EE6C0064EBCC /* VeloozeFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -519,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB966CF1C64EEF80064EBCC /* StationManager.m in Sources */,
+				8B20EB7A1C6B2E3300BC2050 /* ACUtils.m in Sources */,
 				090EE4701C6763610028C5DD /* FavoritesTableCell.m in Sources */,
 				8BB966CD1C64EEF80064EBCC /* FavoritesManager.m in Sources */,
 			);
@@ -535,7 +540,6 @@
 				8BB966DB1C64EF3F0064EBCC /* AppDelegate.m in Sources */,
 				8BB966D81C64EF3F0064EBCC /* main.m in Sources */,
 				8BB966F51C64F50A0064EBCC /* MapVC.m in Sources */,
-				8BB966FC1C64FCE70064EBCC /* ACUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

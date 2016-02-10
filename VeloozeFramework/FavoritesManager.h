@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Config.h"
 
 FOUNDATION_EXPORT @interface FavoritesManager : NSObject {
     NSMutableArray * mFavs;

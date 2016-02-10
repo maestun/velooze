@@ -16,7 +16,8 @@
 
 #import "FavoritesManager.h"
 
-#define FAVS_KEY    @"group.appstud.sharingdata"
+#define USERPREFS_SUITE_NAME    @"group.appstud.sharingdata"
+#define FAVS_KEY                @"velooze.favorites"
 
 static FavoritesManager * sInstance = nil;
 
@@ -33,7 +34,7 @@ static FavoritesManager * sInstance = nil;
 - (instancetype)init {
     self = [super init];
     
-    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:FAVS_KEY];
+    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:USERPREFS_SUITE_NAME];
     NSArray * temp = [def objectForKey:FAVS_KEY];
     if(temp == nil) {
         temp = [NSArray array];
@@ -55,7 +56,7 @@ static FavoritesManager * sInstance = nil;
     else {
         [mFavs addObject:[NSNumber numberWithInt:aIdent]];
     }
-    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:FAVS_KEY];
+    NSUserDefaults * def = [[NSUserDefaults alloc] initWithSuiteName:USERPREFS_SUITE_NAME];
     [def setObject:[self favorites] forKey:FAVS_KEY];
 }
 
