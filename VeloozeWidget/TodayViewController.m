@@ -118,10 +118,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     UILabel * title = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth([tableView frame]), [self tableView:tableView heightForHeaderInSection:section])];
     [title setTextAlignment:NSTextAlignmentCenter];
-    [title setText:mLastUpdate == 0 ? @"" : [self getLastUpdateString:([ACUtils getTick] - mLastUpdate)]];
+    [title setText:mLastUpdate == 0 ? @"Mise à jour en cours..." : [self getLastUpdateString:([ACUtils getTick] - mLastUpdate)]];
     [title setTextColor:FlatWhite];
     [title setFont:FONT(FONT_SZ_SMALL)];
-    
     
     UIButton * bt = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth([tableView frame]) - 50, 0, 50, 20)];
     [[bt titleLabel] setTextAlignment:NSTextAlignmentCenter];
