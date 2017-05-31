@@ -12,6 +12,7 @@
 		090EE4711C6763610028C5DD /* FavoritesTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */; };
 		09D692611C673AFC00F8D5EC /* StationAnnotationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */; };
 		09D692651C673C0F00F8D5EC /* StationAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09D692641C673C0F00F8D5EC /* StationAnnotationView.m */; };
+		5E43AFAABE693DBFFC9E2605 /* libPods-VeloozeFramework.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C78E61C68788095F27D3211E /* libPods-VeloozeFramework.a */; };
 		8B20EB791C6B2E3300BC2050 /* ACUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B20EB771C6B2E3300BC2050 /* ACUtils.h */; };
 		8B20EB7A1C6B2E3300BC2050 /* ACUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B20EB781C6B2E3300BC2050 /* ACUtils.m */; };
 		8BB966C11C64EE6C0064EBCC /* VeloozeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BB966C01C64EE6C0064EBCC /* VeloozeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -35,8 +36,8 @@
 		8BB9670E1C650D4A0064EBCC /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BB9670C1C650D4A0064EBCC /* MainInterface.storyboard */; };
 		8BB967121C650D4A0064EBCC /* VeloozeWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8BB967051C650D4A0064EBCC /* VeloozeWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		8BB967171C650DF70064EBCC /* VeloozeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BB966BD1C64EE6C0064EBCC /* VeloozeFramework.framework */; };
-		D131FEB96E9F1956B770859C /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A0C7E5819E54BC4AFD766F /* libPods.a */; };
-		DFB02A0A14A0618B7EEB09CD /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A0C7E5819E54BC4AFD766F /* libPods.a */; };
+		DC5F94336C97DA3E71589F37 /* libPods-VeloozeWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 54D97313D177A60244E6F791 /* libPods-VeloozeWidget.a */; };
+		EDD602EA9181BF4661C75A9F /* libPods-Velooze.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E050BAFF14979049FC661856 /* libPods-Velooze.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,15 +83,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		06294AA20203DCFBEB8FE531 /* Pods-VeloozeWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeloozeWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeloozeWidget/Pods-VeloozeWidget.release.xcconfig"; sourceTree = "<group>"; };
 		090EE46C1C6763610028C5DD /* FavoritesTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoritesTableCell.h; sourceTree = "<group>"; };
 		090EE46D1C6763610028C5DD /* FavoritesTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoritesTableCell.m; sourceTree = "<group>"; };
 		090EE46E1C6763610028C5DD /* FavoritesTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FavoritesTableCell.xib; sourceTree = "<group>"; };
 		09D692601C673AFC00F8D5EC /* StationAnnotationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = StationAnnotationView.xib; path = views/StationAnnotationView.xib; sourceTree = "<group>"; };
 		09D692631C673C0F00F8D5EC /* StationAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StationAnnotationView.h; path = views/StationAnnotationView.h; sourceTree = "<group>"; };
 		09D692641C673C0F00F8D5EC /* StationAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StationAnnotationView.m; path = views/StationAnnotationView.m; sourceTree = "<group>"; };
-		116F05C0D824F4E714C21249 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		15A0C7E5819E54BC4AFD766F /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		2EBF35CB1EAA29A7F618F233 /* Pods-VeloozeWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeloozeWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VeloozeWidget/Pods-VeloozeWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		5186BA1B7066D94B3DE4D334 /* Pods-VeloozeFramework.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeloozeFramework.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VeloozeFramework/Pods-VeloozeFramework.debug.xcconfig"; sourceTree = "<group>"; };
+		54D97313D177A60244E6F791 /* libPods-VeloozeWidget.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeloozeWidget.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B20EB761C6B2D6B00BC2050 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		8B20EB771C6B2E3300BC2050 /* ACUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACUtils.h; sourceTree = "<group>"; };
 		8B20EB781C6B2E3300BC2050 /* ACUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACUtils.m; sourceTree = "<group>"; };
@@ -125,6 +127,11 @@
 		8BB9670F1C650D4A0064EBCC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BB967181C6511330064EBCC /* Velooze.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Velooze.entitlements; sourceTree = "<group>"; };
 		8BB967191C6511620064EBCC /* VeloozeWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = VeloozeWidget.entitlements; sourceTree = "<group>"; };
+		BC933527F0B9FA0221C9650B /* Pods-Velooze.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Velooze.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Velooze/Pods-Velooze.debug.xcconfig"; sourceTree = "<group>"; };
+		C78E61C68788095F27D3211E /* libPods-VeloozeFramework.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VeloozeFramework.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E050BAFF14979049FC661856 /* libPods-Velooze.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Velooze.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F331AABF00DE8C8D9D1971C0 /* Pods-VeloozeFramework.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VeloozeFramework.release.xcconfig"; path = "Pods/Target Support Files/Pods-VeloozeFramework/Pods-VeloozeFramework.release.xcconfig"; sourceTree = "<group>"; };
+		F334B2AF5D26902DA4229CF2 /* Pods-Velooze.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Velooze.release.xcconfig"; path = "Pods/Target Support Files/Pods-Velooze/Pods-Velooze.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,7 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D131FEB96E9F1956B770859C /* libPods.a in Frameworks */,
+				5E43AFAABE693DBFFC9E2605 /* libPods-VeloozeFramework.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +148,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BB966FE1C6509340064EBCC /* VeloozeFramework.framework in Frameworks */,
-				DFB02A0A14A0618B7EEB09CD /* libPods.a in Frameworks */,
+				EDD602EA9181BF4661C75A9F /* libPods-Velooze.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +158,7 @@
 			files = (
 				8BB967171C650DF70064EBCC /* VeloozeFramework.framework in Frameworks */,
 				8BB967071C650D4A0064EBCC /* NotificationCenter.framework in Frameworks */,
+				DC5F94336C97DA3E71589F37 /* libPods-VeloozeWidget.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,8 +178,10 @@
 		67741DBF842279E056F76CA0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				15A0C7E5819E54BC4AFD766F /* libPods.a */,
 				8BB967061C650D4A0064EBCC /* NotificationCenter.framework */,
+				E050BAFF14979049FC661856 /* libPods-Velooze.a */,
+				C78E61C68788095F27D3211E /* libPods-VeloozeFramework.a */,
+				54D97313D177A60244E6F791 /* libPods-VeloozeWidget.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,8 +193,8 @@
 				8BB967081C650D4A0064EBCC /* VeloozeWidget */,
 				8BB966BF1C64EE6C0064EBCC /* VeloozeFramework */,
 				8BB966BE1C64EE6C0064EBCC /* Products */,
-				E41C56C28A800EB7B48B1B51 /* Pods */,
 				67741DBF842279E056F76CA0 /* Frameworks */,
+				F637FB9D2DD7188342230525 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -269,11 +279,15 @@
 			path = VeloozeWidget;
 			sourceTree = "<group>";
 		};
-		E41C56C28A800EB7B48B1B51 /* Pods */ = {
+		F637FB9D2DD7188342230525 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */,
-				116F05C0D824F4E714C21249 /* Pods.release.xcconfig */,
+				BC933527F0B9FA0221C9650B /* Pods-Velooze.debug.xcconfig */,
+				F334B2AF5D26902DA4229CF2 /* Pods-Velooze.release.xcconfig */,
+				5186BA1B7066D94B3DE4D334 /* Pods-VeloozeFramework.debug.xcconfig */,
+				F331AABF00DE8C8D9D1971C0 /* Pods-VeloozeFramework.release.xcconfig */,
+				2EBF35CB1EAA29A7F618F233 /* Pods-VeloozeWidget.debug.xcconfig */,
+				06294AA20203DCFBEB8FE531 /* Pods-VeloozeWidget.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -300,12 +314,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BB966C51C64EE6C0064EBCC /* Build configuration list for PBXNativeTarget "VeloozeFramework" */;
 			buildPhases = (
-				B4E87CD59462B6A9EF8D6C1C /* Check Pods Manifest.lock */,
+				4A74DD8E7D1E5122F5FCDCBF /* [CP] Check Pods Manifest.lock */,
 				8BB966B81C64EE6C0064EBCC /* Sources */,
 				8BB966B91C64EE6C0064EBCC /* Frameworks */,
 				8BB966BA1C64EE6C0064EBCC /* Headers */,
 				8BB966BB1C64EE6C0064EBCC /* Resources */,
-				75FFBF6CB45C06830C23847E /* Copy Pods Resources */,
+				285B518E47904AB89C9250A4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -320,14 +334,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BB966E81C64EF3F0064EBCC /* Build configuration list for PBXNativeTarget "Velooze" */;
 			buildPhases = (
-				516B18A287A1151DC79022C1 /* Check Pods Manifest.lock */,
+				6F61440DA18C07CFE86922BC /* [CP] Check Pods Manifest.lock */,
 				8BB966D01C64EF3F0064EBCC /* Sources */,
 				8BB966D11C64EF3F0064EBCC /* Frameworks */,
 				8BB966D21C64EF3F0064EBCC /* Resources */,
-				61299C25C3C2C2F65A21DB6F /* Embed Pods Frameworks */,
-				A3D5ACD96F52B640BB915E54 /* Copy Pods Resources */,
 				8BB967001C6509340064EBCC /* Embed Frameworks */,
 				8BB967161C650D4A0064EBCC /* Embed App Extensions */,
+				5926639B4C5DE186E8D9F446 /* [CP] Embed Pods Frameworks */,
+				A0FFF9438568C69CF48FA9E7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -344,9 +358,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BB967151C650D4A0064EBCC /* Build configuration list for PBXNativeTarget "VeloozeWidget" */;
 			buildPhases = (
+				567847815095BA78B4344308 /* [CP] Check Pods Manifest.lock */,
 				8BB967011C650D4A0064EBCC /* Sources */,
 				8BB967021C650D4A0064EBCC /* Frameworks */,
 				8BB967031C650D4A0064EBCC /* Resources */,
+				2A47236A72D6BD44FB8E95C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -363,7 +379,7 @@
 		8BB966B41C64EE6C0064EBCC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = AppStud;
 				TargetAttributes = {
 					8BB966BC1C64EE6C0064EBCC = {
@@ -440,79 +456,109 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		516B18A287A1151DC79022C1 /* Check Pods Manifest.lock */ = {
+		285B518E47904AB89C9250A4 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VeloozeFramework/Pods-VeloozeFramework-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		61299C25C3C2C2F65A21DB6F /* Embed Pods Frameworks */ = {
+		2A47236A72D6BD44FB8E95C6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VeloozeWidget/Pods-VeloozeWidget-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		75FFBF6CB45C06830C23847E /* Copy Pods Resources */ = {
+		4A74DD8E7D1E5122F5FCDCBF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		A3D5ACD96F52B640BB915E54 /* Copy Pods Resources */ = {
+		567847815095BA78B4344308 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		B4E87CD59462B6A9EF8D6C1C /* Check Pods Manifest.lock */ = {
+		5926639B4C5DE186E8D9F446 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Velooze/Pods-Velooze-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F61440DA18C07CFE86922BC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A0FFF9438568C69CF48FA9E7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Velooze/Pods-Velooze-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -607,8 +653,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -654,8 +702,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -684,8 +734,9 @@
 		};
 		8BB966C61C64EE6C0064EBCC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 5186BA1B7066D94B3DE4D334 /* Pods-VeloozeFramework.debug.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -693,7 +744,7 @@
 				INFOPLIST_FILE = VeloozeFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.VeloozeFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.VeloozeFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -702,8 +753,9 @@
 		};
 		8BB966C71C64EE6C0064EBCC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 116F05C0D824F4E714C21249 /* Pods.release.xcconfig */;
+			baseConfigurationReference = F331AABF00DE8C8D9D1971C0 /* Pods-VeloozeFramework.release.xcconfig */;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -711,7 +763,7 @@
 				INFOPLIST_FILE = VeloozeFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.VeloozeFramework;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.VeloozeFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -720,7 +772,7 @@
 		};
 		8BB966E91C64EF3F0064EBCC /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 239F3D1C5DC672EA5316FDCB /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BC933527F0B9FA0221C9650B /* Pods-Velooze.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -729,7 +781,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Velooze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.Velooze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.Velooze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -737,7 +789,7 @@
 		};
 		8BB966EA1C64EF3F0064EBCC /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 116F05C0D824F4E714C21249 /* Pods.release.xcconfig */;
+			baseConfigurationReference = F334B2AF5D26902DA4229CF2 /* Pods-Velooze.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -746,7 +798,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Velooze/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.Velooze;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.Velooze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -754,6 +806,7 @@
 		};
 		8BB967131C650D4A0064EBCC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EBF35CB1EAA29A7F618F233 /* Pods-VeloozeWidget.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_ENTITLEMENTS = VeloozeWidget/VeloozeWidget.entitlements;
@@ -765,7 +818,7 @@
 				);
 				INFOPLIST_FILE = VeloozeWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.Velooze.VeloozeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.Velooze.VeloozeWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
@@ -774,6 +827,7 @@
 		};
 		8BB967141C650D4A0064EBCC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06294AA20203DCFBEB8FE531 /* Pods-VeloozeWidget.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_ENTITLEMENTS = VeloozeWidget/VeloozeWidget.entitlements;
@@ -785,7 +839,7 @@
 				);
 				INFOPLIST_FILE = VeloozeWidget/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appstud.Velooze.VeloozeWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.maestun.Velooze.VeloozeWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;

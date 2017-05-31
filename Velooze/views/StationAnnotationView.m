@@ -3,7 +3,7 @@
 //  Velooze
 //
 //  Created by Olivier on 07/02/2016.
-//  Copyright © 2016 AppStud. All rights reserved.
+//  Copyright © 2016 maestun. All rights reserved.
 //
 
 #import "StationAnnotationView.h"
@@ -17,6 +17,8 @@ static NSMutableDictionary * sTintedPins = nil;
 @implementation StationAnnotationView
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
+    
     if(sPin == nil) {
         sPin = [UIImage imageNamed:@"pin_filled"];
         sFavOFF = [ACUtils tintedImageWithColor:FlatWhite image:[UIImage imageNamed:@"star"]];
@@ -84,7 +86,7 @@ static NSMutableDictionary * sTintedPins = nil;
                 [title setFont:FONT_BOLD(FONT_SZ_MEDIUM)];
                 [title setTextColor:FlatWhite];
 
-                UILabel * subtitle = (UILabel *)views[5];
+                UILabel * subtitle = (UILabel *)views[2];
                 [subtitle setFont:FONT(FONT_SZ_SMALL)];
                 [subtitle setTextColor:FlatWhite];
             }

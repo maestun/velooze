@@ -3,7 +3,7 @@
 //  Velooze
 //
 //  Created by developer on 05/02/2016.
-//  Copyright © 2016 AppStud. All rights reserved.
+//  Copyright © 2016 maestun. All rights reserved.
 //
 
 #import "MenuVC.h"
@@ -26,7 +26,7 @@
     
     [[self tvFavorites] setBackgroundView:bg];
 
-    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.appstud.VeloozeFramework"];
+    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.maestun.VeloozeFramework"];
     [[self tvFavorites] registerNib:[UINib nibWithNibName:@"FavoritesTableCell" bundle:framework_bundle] forCellReuseIdentifier:CELL_ID(FavoritesTableCell)];
 }
 

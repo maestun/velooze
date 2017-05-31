@@ -3,7 +3,7 @@
 //  VeloozeWidget
 //
 //  Created by developer on 05/02/2016.
-//  Copyright © 2016 AppStud. All rights reserved.
+//  Copyright © 2016 maestun. All rights reserved.
 //
 
 #import "TodayViewController.h"
@@ -37,7 +37,7 @@
 //    [[self lbRefresh] setTextColor:FlatWhite];
 //    [[self lbRefresh] setFont:FONT(FONT_SZ_SMALL)];
     
-    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.appstud.VeloozeFramework"];
+    NSBundle *framework_bundle = [NSBundle bundleWithIdentifier:@"com.maestun.VeloozeFramework"];
     [[self tvFavorites] registerNib:[UINib nibWithNibName:@"FavoritesTableCell" bundle:framework_bundle] forCellReuseIdentifier:@"idFavoritesTableCell"];
 
 }
@@ -143,7 +143,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSInteger ret = [[[FavoritesManager instance] favorites] count];
-    NSLog(@"numberOfRowsInSection %ld", ret);
+    NSLog(@"numberOfRowsInSection %d", ret);
     [[tableView backgroundView] setHidden:(ret != 0)];
     return ret;
 }

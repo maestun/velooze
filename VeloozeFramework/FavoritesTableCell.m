@@ -3,7 +3,7 @@
 //  Velooze
 //
 //  Created by Olivier on 07/02/2016.
-//  Copyright © 2016 AppStud. All rights reserved.
+//  Copyright © 2016 maestun. All rights reserved.
 //
 
 #import "FavoritesTableCell.h"
@@ -11,6 +11,7 @@
 @implementation FavoritesTableCell
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
     // Initialization code
     [self setBackgroundColor:[UIColor clearColor]];
     
